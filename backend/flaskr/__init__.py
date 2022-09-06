@@ -252,7 +252,10 @@ def create_app(test_config=None):
             randomIndex = random.randint(0, len(questions))
 
             if len(questions) <= randomIndex:
-                return
+                return jsonify({
+                    'success':True,
+                    'question':False
+                })
 
             if len(previous_questions) != 0:
                 if len(previous_questions) == 5:
@@ -266,7 +269,7 @@ def create_app(test_config=None):
                 previous_questions.append(quiz_id)
                 question = questions[randomIndex]
             else:
-                question = 0
+                question = False
             data = {
                 'success': True,
                 'quiz_category': quiz_category,
